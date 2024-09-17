@@ -3,7 +3,6 @@ title: "Assignment: Base R"
 author: Adam Labadorf
 output: html_document
 ---
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 source("main.R")
@@ -44,7 +43,7 @@ $b$. The `is_between(x, a, b)` should return a logical vector that is `TRUE`
 when an element is strictly between values `a` and `b`, and `FALSE` otherwise.
 
 ```{r}
-is_between(x, -1, 1)
+is_between(0, -1, 1)
 ```
 
 We can again use the fact that logical vectors are numeric to sanity check our
