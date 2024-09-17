@@ -157,7 +157,7 @@ summarize_matrix <- function(x, na.rm=FALSE) {
   )
   return(A)
 }
-summarize_matrix(m)
+summarize_matrix(m) 
 
 # ------------ Helper Functions Used By Assignment, You May Ignore ------------
 sample_normal <- function(n, mean=0, sd=1) {
