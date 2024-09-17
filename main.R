@@ -18,11 +18,10 @@
 #' less_than_zero(c(-1,0,1,2,3,4))
 #' [1] TRUE FALSE FALSE FALSE FALSE FALSE
 less_than_zero <- function(x) {
-    return(NULL)
+    return(x<0)
 }
-
 #' Evaluate whether the argument is between two numbers
-#'
+
 #' Returns TRUE if the numeric argument x is contained within the open interval
 #' (a, b), otherwise return FALSE.
 #'
@@ -43,10 +42,9 @@ less_than_zero <- function(x) {
 #' [1,] FALSE  TRUE  TRUE
 #' [2,]  TRUE FALSE FALSE
 #' [3,] FALSE FALSE FALSE
-is_between <- function(x, a, b) {
-    return(NULL)
+is_between<-function(x,a,b) {
+  return(x<b & x>a) 
 }
-
 #' Return the values of the input vector that are not NA
 #'
 #' Returns the values of the input vector `x` that are not NA
@@ -60,10 +58,12 @@ is_between <- function(x, a, b) {
 #' x <- c(1,2,NA,3)
 #' rm_na(x)
 #' [1] 1 2 3
+x<-(c(1,2,NA,3))
 rm_na <- function(x) {
-    return(NULL)
+  z<- x[!is.na(x)]
+  return(z)
 }
-
+rm_na(x)
 #' Calculate the median of each row of a matrix
 #'
 #' Given the matrix x with n rows and m columns, return a numeric vector of
@@ -80,9 +80,10 @@ rm_na <- function(x) {
 #' [1] 1 4 7
 #' 
 row_medians <- function(x) {
-    return(NULL)
+  r_m<-apply(x, 1, median)
+    return(r_m)
 }
-
+row_medians(m)
 #' Evaluate each row of a matrix with a provided function
 #'
 #' Given the matrix `x` with n rows and m columns, return a numeric vector of
@@ -105,9 +106,8 @@ row_medians <- function(x) {
 #' summarize_rows(m, mean)
 #' [1] 2 5 8
 summarize_rows <- function(x, fn, na.rm=FALSE) {
-    return(NULL)
+  apply(x, 1, fn, na.rm=na.rm)
 }
-
 #' Summarize matrix rows into data frame
 #'
 #' Summarizes the rows of matrix `x`. Returns a data frame with the following
@@ -145,8 +145,19 @@ summarize_rows <- function(x, fn, na.rm=FALSE) {
 #' 3 -0.09040182 1.027559 -0.02774705 -3.026888 2.353087      130              54      0
 #' 4  0.09518138 1.030461  0.11294781 -3.409049 2.544992       90              72      0
 summarize_matrix <- function(x, na.rm=FALSE) {
-    return(NULL)
+  A <- data.frame(
+    mean = apply(x,1,mean),
+    stdev = apply(x,1,sd),
+    median = apply(x,1,median),
+    min = apply(x,1,min),
+    max = apply(x,1,max),
+    num_lt_0=rowSums(x<0,1),
+    num_btw_1_and_5=rowSums(x>1 & x<5,1),
+    num_na=rowSums(is.na(x))
+  )
+  return(A)
 }
+summarize_matrix(m)
 
 # ------------ Helper Functions Used By Assignment, You May Ignore ------------
 sample_normal <- function(n, mean=0, sd=1) {
