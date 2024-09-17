@@ -63,7 +63,6 @@ rm_na <- function(x) {
   z<- x[!is.na(x)]
   return(z)
 }
-rm_na(x)
 #' Calculate the median of each row of a matrix
 #'
 #' Given the matrix x with n rows and m columns, return a numeric vector of
@@ -83,7 +82,6 @@ row_medians <- function(x) {
   r_m<-apply(x, 1, median)
     return(r_m)
 }
-row_medians(m)
 #' Evaluate each row of a matrix with a provided function
 #'
 #' Given the matrix `x` with n rows and m columns, return a numeric vector of
@@ -157,8 +155,6 @@ summarize_matrix <- function(x, na.rm=FALSE) {
   )
   return(A)
 }
-summarize_matrix(m) 
-
 # ------------ Helper Functions Used By Assignment, You May Ignore ------------
 sample_normal <- function(n, mean=0, sd=1) {
     return(NULL)
